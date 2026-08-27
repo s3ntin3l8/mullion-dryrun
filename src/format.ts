@@ -41,3 +41,10 @@ export function isPalindrome(s: string): boolean {
   const normalized = s.toLowerCase().replace(/[^a-z0-9]/g, '');
   return normalized === normalized.split('').reverse().join('');
 }
+
+export function titleCase(s: string): string {
+  return s
+    .split(/\s+/)
+    .map((word) => (word.length === 0 ? word : word[0].toUpperCase() + word.slice(1).toLowerCase()))
+    .join(' ');
+}
