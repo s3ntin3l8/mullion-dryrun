@@ -22,3 +22,10 @@ export function formatDuration(ms: number, opts?: { compact?: boolean }): string
 
   return tiers.map((tier) => `${tier.value}${tier.unit}`).join(' ');
 }
+
+export function truncate(s: string, maxLength: number): string {
+  if (s.length <= maxLength) {
+    return s;
+  }
+  return `${s.slice(0, maxLength - 1)}…`;
+}
