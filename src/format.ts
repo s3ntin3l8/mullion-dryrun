@@ -48,3 +48,12 @@ export function titleCase(s: string): string {
     .map((word) => (word.length === 0 ? word : word[0].toUpperCase() + word.slice(1).toLowerCase()))
     .join(' ');
 }
+
+export function snakeCase(s: string): string {
+  return s
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .trim()
+    .split(/[\s_]+/)
+    .join('_')
+    .toLowerCase();
+}
