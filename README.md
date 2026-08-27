@@ -1,3 +1,3 @@
 # mullion-dryrun
 
-Throwaway fixture repo — see `CLAUDE.md`. Not a real project.
+A small utility library. See `CLAUDE.md` for contribution rules.
