@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { formatDuration, truncate } from '../src/format.ts';
+import { formatDuration, truncate, pluralize } from '../src/format.ts';
 
 test('formatDuration converts milliseconds to "Xm Ys"', () => {
   assert.equal(formatDuration(90000), '1m 30s');
@@ -59,4 +59,21 @@ test('truncate returns the string unchanged when exactly at maxLength', () => {
 
 test('truncate shortens and appends an ellipsis when longer than maxLength', () => {
   assert.equal(truncate('hello world', 5), 'hell…');
+});
+
+test('pluralize uses the singular form when count is 1', () => {
+  assert.equal(pluralize(1, 'item'), '1 item');
+});
+
+test('pluralize appends "s" to the singular form when count is 0', () => {
+  assert.equal(pluralize(0, 'item'), '0 items');
+});
+
+test('pluralize appends "s" to the singular form when count is greater than 1', () => {
+  assert.equal(pluralize(3, 'item'), '3 items');
+});
+
+test('pluralize uses an explicit irregular plural form', () => {
+  assert.equal(pluralize(2, 'child', 'children'), '2 children');
+  assert.equal(pluralize(1, 'child', 'children'), '1 child');
 });
