@@ -24,7 +24,7 @@ export function formatDuration(ms: number, opts?: { compact?: boolean }): string
 }
 
 export function truncate(s: string, maxLength: number): string {
-  if (s.length <= maxLength) {
+  if (s.length < maxLength) {
     return s;
   }
   return `${s.slice(0, maxLength - 1)}…`;
