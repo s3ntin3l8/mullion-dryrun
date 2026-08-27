@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { formatDuration, truncate, pluralize } from '../src/format.ts';
+import { formatDuration, truncate, pluralize, isPalindrome } from '../src/format.ts';
 
 test('formatDuration converts milliseconds to "Xm Ys"', () => {
   assert.equal(formatDuration(90000), '1m 30s');
@@ -76,4 +76,20 @@ test('pluralize appends "s" to the singular form when count is greater than 1', 
 test('pluralize uses an explicit irregular plural form', () => {
   assert.equal(pluralize(2, 'child', 'children'), '2 children');
   assert.equal(pluralize(1, 'child', 'children'), '1 child');
+});
+
+test('isPalindrome returns true for a simple palindrome', () => {
+  assert.equal(isPalindrome('racecar'), true);
+});
+
+test('isPalindrome is case-insensitive', () => {
+  assert.equal(isPalindrome('RaceCar'), true);
+});
+
+test('isPalindrome ignores spaces and punctuation', () => {
+  assert.equal(isPalindrome('A man, a plan, a canal: Panama'), true);
+});
+
+test('isPalindrome returns false for a non-palindrome', () => {
+  assert.equal(isPalindrome('hello'), false);
 });
