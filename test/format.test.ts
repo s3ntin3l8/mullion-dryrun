@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { formatDuration, truncate, pluralize, isPalindrome, titleCase } from '../src/format.ts';
+import { formatDuration, truncate, pluralize, isPalindrome, titleCase, snakeCase } from '../src/format.ts';
 
 test('formatDuration converts milliseconds to "Xm Ys"', () => {
   assert.equal(formatDuration(90000), '1m 30s');
@@ -100,4 +100,12 @@ test('titleCase capitalizes the first letter of each word', () => {
 
 test('titleCase lowercases the rest of each word', () => {
   assert.equal(titleCase('hELLO wORLD'), 'Hello World');
+});
+
+test('snakeCase converts a camelCase string to snake_case', () => {
+  assert.equal(snakeCase('helloWorld'), 'hello_world');
+});
+
+test('snakeCase converts a space-separated string to snake_case', () => {
+  assert.equal(snakeCase('hello world'), 'hello_world');
 });
