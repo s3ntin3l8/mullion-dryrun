@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { formatDuration, truncate, pluralize, isPalindrome } from '../src/format.ts';
+import { formatDuration, truncate, pluralize, isPalindrome, titleCase } from '../src/format.ts';
 
 test('formatDuration converts milliseconds to "Xm Ys"', () => {
   assert.equal(formatDuration(90000), '1m 30s');
@@ -92,4 +92,12 @@ test('isPalindrome ignores spaces and punctuation', () => {
 
 test('isPalindrome returns false for a non-palindrome', () => {
   assert.equal(isPalindrome('hello'), false);
+});
+
+test('titleCase capitalizes the first letter of each word', () => {
+  assert.equal(titleCase('hello world'), 'Hello World');
+});
+
+test('titleCase lowercases the rest of each word', () => {
+  assert.equal(titleCase('hELLO wORLD'), 'Hello World');
 });
